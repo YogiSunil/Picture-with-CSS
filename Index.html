@@ -9,8 +9,34 @@
     Uncomment the line below to apply the external cyberpunk theme override.
     This demonstrates how CSS custom properties can be overridden from external stylesheets.
   -->
-  <!-- <link rel="stylesheet" href="external-theme.css"> -->
+  <link rel="stylesheet" href="external-theme.css">
   <style>
+    /*
+     * Assignment 3 – Parameterize Your Picture
+     * CSS Custom Properties Documentation
+     *
+     * Main Custom Property Groups:
+     * - Color System: --space-*, --nebula-*, --star-*, --planet-*, --tech-*
+     * - Size System: --size-star-*, --size-planet-*, --size-ship-*, --size-station, --size-beam-height
+     * - Position System: --pos-star-*, --pos-planet*-*
+     * - Animation System: --anim-slow, --anim-medium, --anim-fast, --anim-ultra-slow
+     * - Effect Intensities: --glow-intensity-*, --blur-*, --opacity-*
+     *
+     * Themes:
+     * - Default "Cosmic" (root variables): Vibrant galaxy palette with blues, magentas, and teals.
+     * - .dark-theme "Midnight": Deeper, desaturated tones for a night mode feel.
+     * - .sunset-theme "Mars Sunset": Warm reds and oranges evoking a Martian sunset.
+     * - External `external-theme.css` (optional): Cyberpunk neon override demonstrating external stylesheet variable overrides.
+     *
+     * Notes on Scope & Fallbacks:
+     * - Variables are defined in :root for global scope and overridden within theme classes applied to <body>.
+     * - Most var() usages include fallback values, ensuring graceful rendering if a variable is missing.
+     * - External stylesheet can override the same variables; uses !important to demonstrate precedence.
+     *
+     * Challenges Encountered:
+     * - Balancing animation intensity across themes required separate glow/opacity variables.
+     * - Ensuring legible UI (theme buttons) across palettes needed targeted fallbacks.
+     */
     /* CSS CUSTOM PROPERTIES SYSTEM - Assignment 3 Parameterization */
     
     :root {
