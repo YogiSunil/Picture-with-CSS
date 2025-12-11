@@ -4,29 +4,128 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pure CSS Art – Cosmic Galaxy Explorer</title>
+  <!-- 
+    EXTERNAL THEME DEMONSTRATION:
+    Uncomment the line below to apply the external cyberpunk theme override.
+    This demonstrates how CSS custom properties can be overridden from external stylesheets.
+  -->
+  <!-- <link rel="stylesheet" href="external-theme.css"> -->
   <style>
-    /*
-     * CSS VARIABLES - Color Palette & Dimensions
-     * Cosmic theme with vibrant purples, blues, and neon accents
-     */
+    /* CSS CUSTOM PROPERTIES SYSTEM - Assignment 3 Parameterization */
+    
     :root {
-      /* Deep space color palette */
-      --space-deep: #0a0a0f;      /* Deep space black */
-      --space-mid: #1a0d2e;       /* Dark purple space */
-      --nebula-purple: #6b46c1;   /* Vibrant nebula purple */
-      --nebula-pink: #ec4899;     /* Hot pink nebula */
-      --nebula-cyan: #06b6d4;     /* Cyan nebula accents */
-      --star-white: #ffffff;      /* Pure white stars */
-      --star-blue: #60a5fa;       /* Blue-white stars */
-      --planet-orange: #f97316;   /* Orange planet */
-      --planet-green: #10b981;    /* Green planet */
-      --ship-silver: #e5e7eb;     /* Spaceship metal */
-      --ship-glow: #3b82f6;       /* Engine glow */
+      /* Color System */
+      --space-deep: #0a0a0f;
+      --space-mid: #1a0d2e;
+      --space-light: #2d1b69;
+      --nebula-primary: #6b46c1;
+      --nebula-secondary: #ec4899;
+      --nebula-accent: #06b6d4;
+      --cosmic-glow: #3b82f6;
+      --star-primary: #ffffff;
+      --star-secondary: #60a5fa;
+      --star-glow: #fbbf24;
+      --planet-warm: #f97316;
+      --planet-cool: #10b981;
+      --planet-neutral: #6b7280;
+      --planet-highlight: #fbbf24;
+      --planet-shadow: #374151;
+      --tech-metal: #e5e7eb;
+      --tech-glow: #3b82f6;
+      --tech-energy: #06b6d4;
+      --tech-core: #ec4899;
+      --tech-shadow: #9ca3af;
       
-      /* Animation timing */
-      --slow-orbit: 20s;
-      --medium-orbit: 15s;
-      --fast-pulse: 2s;
+      /* Size System */
+      --size-star-large: 80px;
+      --size-star-small: 20px;
+      --size-planet-large: 120px;
+      --size-planet-medium: 90px;
+      --size-ship-width: 120px;
+      --size-ship-height: 40px;
+      --size-station: 60px;
+      --size-beam-height: 3px;
+      
+      /* Position System */
+      --pos-star-x: 25%;
+      --pos-star-y: 20%;
+      --pos-planet1-x: 25%;
+      --pos-planet1-y: 60%;
+      --pos-planet2-x: 15%;
+      --pos-planet2-y: 25%;
+      
+      /* Animation System */
+      --anim-slow: 20s;
+      --anim-medium: 15s;
+      --anim-fast: 2s;
+      --anim-ultra-slow: 40s;
+      
+      /* Effect Intensities */
+      --glow-intensity-low: 0.3;
+      --glow-intensity-med: 0.6;
+      --glow-intensity-high: 0.8;
+      --blur-cosmic: 20px;
+      --blur-subtle: 2px;
+      --opacity-subtle: 0.3;
+      --opacity-medium: 0.6;
+      --opacity-strong: 0.8;
+    }
+
+    /* Dark Midnight Theme */
+    .dark-theme {
+      --space-deep: #000000;
+      --space-mid: #0d1117;
+      --space-light: #161b22;
+      --nebula-primary: #1f2937;
+      --nebula-secondary: #374151;
+      --nebula-accent: #4b5563;
+      --cosmic-glow: #1e40af;
+      --star-primary: #f8fafc;
+      --star-secondary: #94a3b8;
+      --star-glow: #e2e8f0;
+      --planet-warm: #7c2d12;
+      --planet-cool: #064e3b;
+      --planet-neutral: #374151;
+      --planet-highlight: #6b7280;
+      --planet-shadow: #1f2937;
+      --tech-metal: #6b7280;
+      --tech-glow: #1e40af;
+      --tech-energy: #0f766e;
+      --tech-core: #7c2d12;
+      --tech-shadow: #374151;
+      --glow-intensity-low: 0.2;
+      --glow-intensity-med: 0.4;
+      --glow-intensity-high: 0.6;
+      --opacity-subtle: 0.2;
+      --opacity-medium: 0.4;
+    }
+
+    /* Sunset Mars Theme */
+    .sunset-theme {
+      --space-deep: #451a03;
+      --space-mid: #7c2d12;
+      --space-light: #ea580c;
+      --nebula-primary: #f97316;
+      --nebula-secondary: #dc2626;
+      --nebula-accent: #fbbf24;
+      --cosmic-glow: #f59e0b;
+      --star-primary: #fef3c7;
+      --star-secondary: #fde047;
+      --star-glow: #f59e0b;
+      --planet-warm: #dc2626;
+      --planet-cool: #16a34a;
+      --planet-neutral: #a16207;
+      --planet-highlight: #fbbf24;
+      --planet-shadow: #7c2d12;
+      --tech-metal: #d97706;
+      --tech-glow: #f59e0b;
+      --tech-energy: #eab308;
+      --tech-core: #dc2626;
+      --tech-shadow: #92400e;
+      --glow-intensity-low: 0.4;
+      --glow-intensity-med: 0.7;
+      --glow-intensity-high: 0.9;
+      --opacity-strong: 0.9;
     }
 
     /*
@@ -48,14 +147,54 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at center, var(--space-mid) 0%, var(--space-deep) 100%);
+      background: radial-gradient(circle at center, var(--space-mid, #1a0d2e) 0%, var(--space-deep, #0a0a0f) 100%);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      transition: background 0.8s ease-in-out;
     }
 
     /*
-     * MAIN CANVAS - The cosmic scene container
-     * Creates a circular viewport like looking through a space telescope
+     * THEME TOGGLE CONTROLS
+     * Interactive buttons to demonstrate theme switching
      */
+    .theme-controls {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+    }
+
+    .theme-btn {
+      padding: 12px 16px;
+      border: 2px solid var(--tech-metal, #e5e7eb);
+      background: rgba(0, 0, 0, var(--opacity-medium, 0.7));
+      color: var(--star-primary, #ffffff);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-btn:hover {
+      background: var(--cosmic-glow, #3b82f6);
+      border-color: var(--cosmic-glow, #3b82f6);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, var(--opacity-subtle, 0.3));
+    }
+
+    .theme-btn.active {
+      background: var(--cosmic-glow, #3b82f6);
+      border-color: var(--star-primary, #ffffff);
+      box-shadow: 0 0 20px var(--cosmic-glow, #3b82f6);
+    }
+
+    /* Main Canvas - Cosmic Scene Container */
     .cosmic-scene {
       width: min(90vw, 800px);
       height: min(90vh, 800px);
@@ -63,17 +202,18 @@
       border-radius: 50%;
       overflow: hidden;
       box-shadow: 
-        0 0 50px rgba(107, 70, 193, 0.3),
-        0 0 100px rgba(59, 130, 246, 0.2),
-        inset 0 0 100px rgba(0, 0, 0, 0.3);
+        0 0 50px var(--nebula-primary, #6b46c1) var(--glow-intensity-low, 0.3),
+        0 0 100px var(--cosmic-glow, #3b82f6) var(--glow-intensity-low, 0.2),
+        inset 0 0 100px rgba(0, 0, 0, var(--opacity-subtle, 0.3));
       background: radial-gradient(
         circle at 30% 40%, 
-        var(--nebula-purple) 0%, 
-        var(--nebula-pink) 30%, 
-        var(--space-mid) 60%, 
-        var(--space-deep) 100%
+        var(--nebula-primary, #6b46c1) 0%, 
+        var(--nebula-secondary, #ec4899) 30%, 
+        var(--space-mid, #1a0d2e) 60%, 
+        var(--space-deep, #0a0a0f) 100%
       );
       border: 3px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.8s ease-in-out;
     }
 
     /*
@@ -84,17 +224,18 @@
       position: absolute;
       inset: 0;
       background-image: 
-        radial-gradient(2px 2px at 20px 30px, var(--star-white), transparent),
-        radial-gradient(2px 2px at 40px 70px, var(--star-blue), transparent),
-        radial-gradient(1px 1px at 90px 40px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 130px 80px, var(--star-blue), transparent),
-        radial-gradient(2px 2px at 160px 30px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 200px 90px, var(--star-blue), transparent),
-        radial-gradient(2px 2px at 240px 50px, var(--star-white), transparent),
-        radial-gradient(1px 1px at 280px 10px, var(--star-blue), transparent);
+        radial-gradient(2px 2px at 20px 30px, var(--star-primary, #ffffff), transparent),
+        radial-gradient(2px 2px at 40px 70px, var(--star-secondary, #60a5fa), transparent),
+        radial-gradient(1px 1px at 90px 40px, var(--star-primary, #ffffff), transparent),
+        radial-gradient(1px 1px at 130px 80px, var(--star-secondary, #60a5fa), transparent),
+        radial-gradient(2px 2px at 160px 30px, var(--star-primary, #ffffff), transparent),
+        radial-gradient(1px 1px at 200px 90px, var(--star-secondary, #60a5fa), transparent),
+        radial-gradient(2px 2px at 240px 50px, var(--star-primary, #ffffff), transparent),
+        radial-gradient(1px 1px at 280px 10px, var(--star-secondary, #60a5fa), transparent);
       background-size: 300px 150px, 400px 200px, 350px 180px, 320px 160px;
-      animation: twinkle var(--slow-orbit) ease-in-out infinite alternate;
+      animation: twinkle var(--anim-slow, 20s) ease-in-out infinite alternate;
       z-index: 1;
+      transition: all 0.8s ease-in-out;
     }
 
     /*
@@ -102,30 +243,31 @@
      */
     .central-star {
       position: absolute;
-      left: 25%;
-      top: 20%;
-      width: 80px;
-      height: 80px;
+      left: var(--pos-star-x, 25%);
+      top: var(--pos-star-y, 20%);
+      width: var(--size-star-large, 80px);
+      height: var(--size-star-large, 80px);
       transform: translate(-50%, -50%);
       background: 
-        conic-gradient(from 0deg, var(--star-white), var(--star-blue), var(--star-white)),
-        radial-gradient(circle at center, var(--star-white) 0%, var(--star-blue) 70%, transparent);
+        conic-gradient(from 0deg, var(--star-primary, #ffffff), var(--star-secondary, #60a5fa), var(--star-primary, #ffffff)),
+        radial-gradient(circle at center, var(--star-primary, #ffffff) 0%, var(--star-secondary, #60a5fa) 70%, transparent);
       border-radius: 50%;
       box-shadow: 
-        0 0 30px var(--star-white),
-        0 0 60px var(--star-blue),
-        0 0 90px rgba(59, 130, 246, 0.3);
-      animation: starPulse var(--fast-pulse) ease-in-out infinite alternate;
+        0 0 30px var(--star-primary, #ffffff),
+        0 0 60px var(--star-glow, #fbbf24),
+        0 0 90px var(--cosmic-glow, #3b82f6) var(--glow-intensity-low, 0.3);
+      animation: starPulse var(--anim-fast, 2s) ease-in-out infinite alternate;
       z-index: 5;
+      transition: all 0.8s ease-in-out;
     }
 
     .central-star::after {
       content: '';
       position: absolute;
       inset: -20px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
+      background: radial-gradient(circle, var(--star-primary, #ffffff) var(--opacity-subtle, 0.1), transparent 70%);
       border-radius: 50%;
-      animation: starGlow calc(var(--fast-pulse) * 1.5) ease-in-out infinite alternate;
+      animation: starGlow calc(var(--anim-fast, 2s) * 1.5) ease-in-out infinite alternate;
     }
 
     /*
@@ -136,13 +278,14 @@
       width: 300px;
       height: 200px;
       background: linear-gradient(45deg, 
-        rgba(107, 70, 193, 0.6), 
-        rgba(236, 72, 153, 0.4), 
-        rgba(6, 182, 212, 0.3));
+        var(--nebula-primary, #6b46c1) var(--glow-intensity-med, 0.6), 
+        var(--nebula-secondary, #ec4899) var(--glow-intensity-low, 0.4), 
+        var(--nebula-accent, #06b6d4) var(--glow-intensity-low, 0.3));
       border-radius: 50%;
-      filter: blur(20px);
-      animation: float var(--slow-orbit) ease-in-out infinite;
+      filter: blur(var(--blur-cosmic, 20px));
+      animation: float var(--anim-slow, 20s) ease-in-out infinite;
       z-index: 2;
+      transition: all 0.8s ease-in-out;
     }
 
     .nebula--top {
@@ -157,9 +300,9 @@
       left: 10%;
       transform: rotate(25deg) scale(1.2);
       background: linear-gradient(-45deg, 
-        rgba(236, 72, 153, 0.5), 
-        rgba(107, 70, 193, 0.3), 
-        rgba(6, 182, 212, 0.4));
+        var(--nebula-secondary, #ec4899) var(--glow-intensity-med, 0.5), 
+        var(--nebula-primary, #6b46c1) var(--glow-intensity-low, 0.3), 
+        var(--nebula-accent, #06b6d4) var(--glow-intensity-low, 0.4));
     }
 
     /*
@@ -174,14 +317,15 @@
 
     /* Orange Gas Giant */
     .planet--orange {
-      right: 25%;
-      top: 60%;
-      width: 120px;
-      height: 120px;
+      right: var(--pos-planet1-x, 25%);
+      top: var(--pos-planet1-y, 60%);
+      width: var(--size-planet-large, 120px);
+      height: var(--size-planet-large, 120px);
       background: 
-        radial-gradient(circle at 30% 30%, #fbbf24, var(--planet-orange)),
-        conic-gradient(from 45deg, #ea580c, #f97316, #fb923c, #ea580c);
-      animation: rotate var(--slow-orbit) linear infinite;
+        radial-gradient(circle at 30% 30%, var(--planet-highlight, #fbbf24), var(--planet-warm, #f97316)),
+        conic-gradient(from 45deg, var(--planet-shadow, #ea580c), var(--planet-warm, #f97316), var(--planet-highlight, #fb923c), var(--planet-shadow, #ea580c));
+      animation: rotate var(--anim-slow, 20s) linear infinite;
+      transition: all 0.8s ease-in-out;
     }
 
     .planet--orange::after {
@@ -190,21 +334,22 @@
       inset: 5px;
       border-radius: 50%;
       background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.3) 0%, 
+        rgba(255, 255, 255, var(--opacity-subtle, 0.3)) 0%, 
         transparent 30%, 
         rgba(0, 0, 0, 0.2) 70%);
     }
 
     /* Green Earth-like Planet */
     .planet--green {
-      left: 15%;
-      bottom: 25%;
-      width: 90px;
-      height: 90px;
+      left: var(--pos-planet2-x, 15%);
+      bottom: var(--pos-planet2-y, 25%);
+      width: var(--size-planet-medium, 90px);
+      height: var(--size-planet-medium, 90px);
       background: 
-        radial-gradient(circle at 40% 25%, #34d399, var(--planet-green)),
-        linear-gradient(45deg, #059669, #10b981, #34d399);
-      animation: rotate calc(var(--medium-orbit) * -1) linear infinite;
+        radial-gradient(circle at 40% 25%, var(--planet-highlight, #34d399), var(--planet-cool, #10b981)),
+        linear-gradient(45deg, var(--planet-shadow, #059669), var(--planet-cool, #10b981), var(--planet-highlight, #34d399));
+      animation: rotate calc(var(--anim-medium, 15s) * -1) linear infinite;
+      transition: all 0.8s ease-in-out;
     }
 
     .planet--green::before {
@@ -212,7 +357,7 @@
       position: absolute;
       width: 25px;
       height: 40px;
-      background: #047857;
+      background: var(--planet-shadow, #047857);
       border-radius: 50%;
       top: 20%;
       left: 30%;
@@ -226,11 +371,12 @@
       position: absolute;
       right: 30%;
       top: 40%;
-      width: 120px;
-      height: 40px;
+      width: var(--size-ship-width, 120px);
+      height: var(--size-ship-height, 40px);
       transform: rotate(-15deg);
       z-index: 6;
-      animation: cruise var(--medium-orbit) ease-in-out infinite;
+      animation: cruise var(--anim-medium, 15s) ease-in-out infinite;
+      transition: all 0.8s ease-in-out;
     }
 
     /* Main hull */
@@ -238,10 +384,10 @@
       position: relative;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, var(--ship-silver), #9ca3af, #6b7280);
+      background: linear-gradient(135deg, var(--tech-metal, #e5e7eb), var(--tech-shadow, #9ca3af), var(--planet-neutral, #6b7280));
       clip-path: polygon(0% 50%, 20% 10%, 80% 15%, 100% 40%, 100% 60%, 80% 85%, 20% 90%);
       box-shadow: 
-        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, var(--opacity-subtle, 0.3)),
         inset 0 -2px 4px rgba(0, 0, 0, 0.2);
     }
 
@@ -252,9 +398,9 @@
       top: 25%;
       width: 25px;
       height: 20px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.8), transparent);
+      background: radial-gradient(circle, var(--tech-glow, #3b82f6) var(--glow-intensity-strong, 0.8), transparent);
       border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      border: 2px solid rgba(255, 255, 255, var(--opacity-low, 0.4));
     }
 
     /* Engine glow */
@@ -265,9 +411,9 @@
       width: 30px;
       height: 16px;
       background: 
-        radial-gradient(ellipse, var(--ship-glow) 0%, rgba(59, 130, 246, 0.6) 50%, transparent 80%);
+        radial-gradient(ellipse, var(--tech-glow, #3b82f6) 0%, var(--tech-glow, #3b82f6) var(--glow-intensity-med, 0.6) 50%, transparent 80%);
       border-radius: 50%;
-      animation: enginePulse calc(var(--fast-pulse) * 0.7) ease-in-out infinite alternate;
+      animation: enginePulse calc(var(--anim-fast, 2s) * 0.7) ease-in-out infinite alternate;
     }
 
     /* Wing stabilizers */
@@ -275,7 +421,7 @@
       position: absolute;
       width: 15px;
       height: 8px;
-      background: linear-gradient(45deg, #6b7280, var(--ship-silver));
+      background: linear-gradient(45deg, var(--planet-neutral, #6b7280), var(--tech-metal, #e5e7eb));
       transform-origin: right center;
     }
 
@@ -298,11 +444,12 @@
      */
     .asteroid {
       position: absolute;
-      background: linear-gradient(135deg, #6b7280, #374151, #1f2937);
+      background: linear-gradient(135deg, var(--planet-neutral, #6b7280), var(--planet-shadow, #374151), var(--space-light, #1f2937));
       border-radius: 20% 80% 40% 60%;
       box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.5);
       z-index: 3;
-      animation: drift var(--slow-orbit) linear infinite;
+      animation: drift var(--anim-slow, 20s) linear infinite;
+      transition: all 0.8s ease-in-out;
     }
 
     .asteroid--small {
@@ -311,7 +458,7 @@
       top: 15%;
       left: 60%;
       transform: rotate(45deg);
-      animation-duration: calc(var(--medium-orbit) * 0.8);
+      animation-duration: calc(var(--anim-medium, 15s) * 0.8);
     }
 
     .asteroid--medium {
@@ -320,7 +467,7 @@
       bottom: 40%;
       right: 10%;
       transform: rotate(-30deg);
-      animation-duration: var(--medium-orbit);
+      animation-duration: var(--anim-medium, 15s);
       animation-delay: -3s;
     }
 
@@ -330,8 +477,8 @@
       top: 70%;
       left: 40%;
       transform: rotate(60deg);
-      background: linear-gradient(135deg, #9ca3af, #6b7280, #374151);
-      animation-duration: calc(var(--slow-orbit) * 1.2);
+      background: linear-gradient(135deg, var(--tech-shadow, #9ca3af), var(--planet-neutral, #6b7280), var(--planet-shadow, #374151));
+      animation-duration: calc(var(--anim-slow, 20s) * 1.2);
       animation-delay: -8s;
     }
 
@@ -342,12 +489,13 @@
       position: absolute;
       top: 35%;
       right: 60%;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, var(--star-white), #e5e7eb, #9ca3af);
+      width: var(--size-star-small, 20px);
+      height: var(--size-star-small, 20px);
+      background: radial-gradient(circle, var(--star-primary, #ffffff), var(--tech-metal, #e5e7eb), var(--tech-shadow, #9ca3af));
       border-radius: 50%;
       z-index: 5;
-      animation: cometPath calc(var(--slow-orbit) * 2) ease-in-out infinite;
+      animation: cometPath calc(var(--anim-slow, 20s) * 2) ease-in-out infinite;
+      transition: all 0.8s ease-in-out;
     }
 
     .comet::after {
@@ -358,12 +506,12 @@
       width: 80px;
       height: 12px;
       background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0.8) 0%, 
-        rgba(96, 165, 250, 0.6) 30%, 
-        rgba(236, 72, 153, 0.4) 60%, 
+        var(--star-primary, #ffffff) var(--glow-intensity-strong, 0.8) 0%, 
+        var(--star-secondary, #96a5fa) var(--glow-intensity-med, 0.6) 30%, 
+        var(--nebula-secondary, #ec4899) var(--glow-intensity-low, 0.4) 60%, 
         transparent 100%);
       border-radius: 50px;
-      filter: blur(2px);
+      filter: blur(var(--blur-subtle, 2px));
       transform: skewX(-30deg);
     }
 
@@ -374,10 +522,11 @@
       position: absolute;
       left: 70%;
       bottom: 15%;
-      width: 60px;
-      height: 60px;
+      width: var(--size-station, 60px);
+      height: var(--size-station, 60px);
       z-index: 4;
-      animation: stationRotate calc(var(--slow-orbit) * 1.5) linear infinite;
+      animation: stationRotate calc(var(--anim-slow, 20s) * 1.5) linear infinite;
+      transition: all 0.8s ease-in-out;
     }
 
     .station-core {
@@ -387,9 +536,9 @@
       width: 30px;
       height: 30px;
       transform: translate(-50%, -50%);
-      background: radial-gradient(circle, var(--ship-silver), #6b7280);
+      background: radial-gradient(circle, var(--tech-metal, #e5e7eb), var(--planet-neutral, #6b7280));
       border-radius: 50%;
-      border: 3px solid rgba(59, 130, 246, 0.6);
+      border: 3px solid var(--tech-glow, #3b82f6) var(--glow-intensity-med, 0.6);
     }
 
     .station-ring {
@@ -399,7 +548,7 @@
       width: 60px;
       height: 60px;
       transform: translate(-50%, -50%);
-      border: 4px solid rgba(229, 231, 235, 0.8);
+      border: 4px solid var(--tech-metal, #e5e7eb) var(--glow-intensity-strong, 0.8);
       border-radius: 50%;
       border-style: dashed;
     }
@@ -410,7 +559,7 @@
       top: 50%;
       width: 40px;
       height: 4px;
-      background: linear-gradient(90deg, var(--ship-silver), #9ca3af);
+      background: linear-gradient(90deg, var(--tech-metal, #e5e7eb), var(--tech-shadow, #9ca3af));
       transform-origin: left center;
     }
 
@@ -426,17 +575,18 @@
      */
     .energy-beam {
       position: absolute;
-      height: 3px;
+      height: var(--size-beam-height, 3px);
       background: linear-gradient(90deg, 
         transparent 0%, 
-        var(--ship-glow) 20%, 
-        var(--star-white) 50%, 
-        var(--ship-glow) 80%, 
+        var(--tech-glow, #3b82f6) 20%, 
+        var(--star-primary, #ffffff) 50%, 
+        var(--tech-glow, #3b82f6) 80%, 
         transparent 100%);
       border-radius: 2px;
-      box-shadow: 0 0 10px var(--ship-glow);
+      box-shadow: 0 0 10px var(--tech-glow, #3b82f6);
       z-index: 5;
-      animation: beamPulse calc(var(--fast-pulse) * 1.5) ease-in-out infinite alternate;
+      animation: beamPulse calc(var(--anim-fast, 2s) * 1.5) ease-in-out infinite alternate;
+      transition: all 0.8s ease-in-out;
     }
 
     .energy-beam--1 {
@@ -462,11 +612,12 @@
       position: absolute;
       width: 4px;
       height: 4px;
-      background: var(--star-white);
+      background: var(--star-primary, #ffffff);
       border-radius: 50%;
-      opacity: 0.6;
+      opacity: var(--opacity-medium, 0.6);
       z-index: 1;
-      animation: particleFloat var(--slow-orbit) ease-in-out infinite;
+      animation: particleFloat var(--anim-slow, 20s) ease-in-out infinite;
+      transition: all 0.8s ease-in-out;
     }
 
     .particle:nth-child(1) { top: 25%; left: 35%; animation-delay: 0s; }
@@ -484,21 +635,21 @@
     @keyframes starPulse {
       0% { 
         box-shadow: 
-          0 0 30px var(--star-white),
-          0 0 60px var(--star-blue),
-          0 0 90px rgba(59, 130, 246, 0.3);
+          0 0 30px var(--star-primary, #ffffff),
+          0 0 60px var(--star-glow, #fbbf24),
+          0 0 90px var(--cosmic-glow, #3b82f6) var(--glow-intensity-low, 0.3);
       }
       100% { 
         box-shadow: 
-          0 0 40px var(--star-white),
-          0 0 80px var(--star-blue),
-          0 0 120px rgba(59, 130, 246, 0.5);
+          0 0 40px var(--star-primary, #ffffff),
+          0 0 80px var(--star-glow, #fbbf24),
+          0 0 120px var(--cosmic-glow, #3b82f6) var(--glow-intensity-med, 0.5);
       }
     }
 
     @keyframes starGlow {
-      0% { opacity: 0.3; transform: scale(1); }
-      100% { opacity: 0.6; transform: scale(1.2); }
+      0% { opacity: var(--opacity-subtle, 0.3); transform: scale(1); }
+      100% { opacity: var(--opacity-medium, 0.6); transform: scale(1.2); }
     }
 
     /* Planetary and orbital animations */
@@ -520,11 +671,11 @@
 
     @keyframes enginePulse {
       0% { 
-        box-shadow: 0 0 10px var(--ship-glow);
+        box-shadow: 0 0 10px var(--tech-glow, #3b82f6);
         transform: scale(1); 
       }
       100% { 
-        box-shadow: 0 0 20px var(--ship-glow), 0 0 30px rgba(59, 130, 246, 0.4);
+        box-shadow: 0 0 20px var(--tech-glow, #3b82f6), 0 0 30px var(--tech-glow, #3b82f6) var(--glow-intensity-low, 0.4);
         transform: scale(1.2); 
       }
     }
@@ -553,12 +704,12 @@
     /* Energy beam effects */
     @keyframes beamPulse {
       0% { 
-        opacity: 0.6; 
-        box-shadow: 0 0 10px var(--ship-glow); 
+        opacity: var(--opacity-medium, 0.6); 
+        box-shadow: 0 0 10px var(--tech-glow, #3b82f6); 
       }
       100% { 
         opacity: 1; 
-        box-shadow: 0 0 20px var(--ship-glow), 0 0 30px rgba(59, 130, 246, 0.6); 
+        box-shadow: 0 0 20px var(--tech-glow, #3b82f6), 0 0 30px var(--tech-glow, #3b82f6) var(--glow-intensity-med, 0.6); 
       }
     }
 
@@ -566,15 +717,15 @@
     @keyframes particleFloat {
       0%, 100% { 
         transform: translateY(0px) translateX(0px); 
-        opacity: 0.3; 
+        opacity: var(--opacity-subtle, 0.3); 
       }
       33% { 
         transform: translateY(-15px) translateX(10px); 
-        opacity: 0.8; 
+        opacity: var(--opacity-strong, 0.8); 
       }
       66% { 
         transform: translateY(5px) translateX(-5px); 
-        opacity: 0.5; 
+        opacity: var(--opacity-medium, 0.5); 
       }
     }
 
@@ -630,8 +781,52 @@
       }
     }
   </style>
+  <script>
+    // Theme switching functionality
+    function switchTheme(themeName) {
+      const body = document.body;
+      const buttons = document.querySelectorAll('.theme-btn');
+      
+      // Remove all existing theme classes
+      body.classList.remove('dark-theme', 'sunset-theme');
+      
+      // Add new theme class if not default
+      if (themeName !== 'cosmic') {
+        body.classList.add(`${themeName}-theme`);
+      }
+      
+      // Update active button state
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.theme === themeName) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Store preference
+      localStorage.setItem('preferred-theme', themeName);
+    }
+    
+    // Initialize theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('preferred-theme') || 'cosmic';
+      switchTheme(savedTheme);
+    });
+  </script>
 </head>
 <body>
+  <!-- Theme Selection Controls -->
+  <div class="theme-controls">
+    <button class="theme-btn active" data-theme="cosmic" onclick="switchTheme('cosmic')">
+      🌌 Cosmic
+    </button>
+    <button class="theme-btn" data-theme="dark" onclick="switchTheme('dark')">
+      🌑 Midnight
+    </button>
+    <button class="theme-btn" data-theme="sunset" onclick="switchTheme('sunset')">
+      🌅 Mars Sunset
+    </button>
+  </div>
   <!--
     COSMIC GALAXY EXPLORER
     A pure CSS artwork showcasing advanced techniques:
@@ -643,36 +838,36 @@
   -->
   <main class="cosmic-scene" role="img" aria-label="CSS illustration: Cosmic galaxy scene with spaceship, planets, and nebula">
     
-    <!-- BACKGROUND STARFIELD - Multiple radial gradients for twinkling stars -->
+    <!-- Background Starfield -->
     <div class="starfield" aria-hidden="true"></div>
     
-    <!-- FLOATING COSMIC PARTICLES - Small animated elements for atmosphere -->
+    <!-- Floating Particles -->
     <div class="particle" aria-hidden="true"></div>
     <div class="particle" aria-hidden="true"></div>
     <div class="particle" aria-hidden="true"></div>
     <div class="particle" aria-hidden="true"></div>
     <div class="particle" aria-hidden="true"></div>
     
-    <!-- NEBULA CLOUDS - Flowing cosmic gas with blur effects -->
+    <!-- Nebula Clouds -->
     <div class="nebula nebula--top" aria-hidden="true"></div>
     <div class="nebula nebula--bottom" aria-hidden="true"></div>
     
-    <!-- CENTRAL BRIGHT STAR - Pulsing star with conic gradient -->
+    <!-- Central Star -->
     <div class="central-star" aria-hidden="true"></div>
     
-    <!-- PLANETS - Multi-layered planetary surfaces -->
+    <!-- Planets -->
     <div class="planet planet--orange" aria-hidden="true"></div>
     <div class="planet planet--green" aria-hidden="true"></div>
     
-    <!-- ASTEROID BELT - Scattered space rocks with various sizes -->
+    <!-- Asteroid Belt -->
     <div class="asteroid asteroid--small" aria-hidden="true" style="--initial-rotation: 45deg;"></div>
     <div class="asteroid asteroid--medium" aria-hidden="true" style="--initial-rotation: -30deg;"></div>
     <div class="asteroid asteroid--large" aria-hidden="true" style="--initial-rotation: 60deg;"></div>
     
-    <!-- COMET - Fast-moving object with particle trail -->
+    <!-- Comet -->
     <div class="comet" aria-hidden="true"></div>
     
-    <!-- SPACESHIP - Complex multi-part spacecraft -->
+    <!-- Spaceship -->
     <div class="spaceship" aria-hidden="true">
       <div class="spaceship__hull"></div>
       <div class="spaceship__cockpit"></div>
@@ -681,7 +876,7 @@
       <div class="spaceship__wing spaceship__wing--bottom"></div>
     </div>
     
-    <!-- SPACE STATION - Rotating geometric structure -->
+    <!-- Space Station -->
     <div class="space-station" aria-hidden="true">
       <div class="station-core"></div>
       <div class="station-ring"></div>
@@ -693,7 +888,7 @@
       <div class="station-arm"></div>
     </div>
     
-    <!-- ENERGY BEAMS - Laser effects between objects -->
+    <!-- Energy Beams -->
     <div class="energy-beam energy-beam--1" aria-hidden="true"></div>
     <div class="energy-beam energy-beam--2" aria-hidden="true"></div>
     

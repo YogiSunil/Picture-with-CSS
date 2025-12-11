@@ -1,0 +1,110 @@
+
+:root {
+  /* ===== CYBERPUNK COLOR OVERRIDES ===== */
+  --space-deep: #0a0014 !important;        /* Deep purple-black space */
+  --space-mid: #1a0033 !important;         /* Dark electric purple */
+  --space-light: #330066 !important;       /* Bright electric purple */
+  
+  /* ===== ELECTRIC NEBULA EFFECTS ===== */
+  --nebula-primary: #ff00ff !important;    /* Electric magenta */
+  --nebula-secondary: #00ffff !important;  /* Electric cyan */
+  --nebula-accent: #ff0080 !important;     /* Hot pink accent */
+  --cosmic-glow: #0080ff !important;       /* Electric blue glow */
+  
+  /* ===== NEON STELLAR OBJECTS ===== */
+  --star-primary: #ffffff !important;      /* Pure white core */
+  --star-secondary: #00ffff !important;    /* Electric cyan stars */
+  --star-glow: #ff00ff !important;         /* Magenta star glow */
+  
+  /* ===== CYBERPUNK PLANETS ===== */
+  --planet-warm: #ff0080 !important;       /* Hot pink planet */
+  --planet-cool: #00ff80 !important;       /* Electric green planet */
+  --planet-neutral: #8080ff !important;    /* Electric purple */
+  --planet-highlight: #ffff00 !important;  /* Electric yellow */
+  --planet-shadow: #4000ff !important;     /* Electric purple shadows */
+  
+  /* ===== NEON TECHNOLOGY ===== */
+  --tech-metal: #c0c0ff !important;        /* Light electric blue metal */
+  --tech-glow: #00ffff !important;         /* Cyan tech glow */
+  --tech-energy: #ff00ff !important;       /* Magenta energy */
+  --tech-core: #ff0080 !important;         /* Hot pink core */
+  --tech-shadow: #8080ff !important;       /* Electric purple shadows */
+  
+  /* ===== ENHANCED CYBERPUNK EFFECTS ===== */
+  --glow-intensity-low: 0.6 !important;    /* Enhanced subtle glow */
+  --glow-intensity-med: 0.8 !important;    /* Enhanced medium glow */
+  --glow-intensity-high: 1.0 !important;   /* Maximum glow intensity */
+  --blur-cosmic: 25px !important;          /* More dramatic blur */
+  --opacity-strong: 1.0 !important;        /* Maximum visibility */
+  
+  /* ===== CYBERPUNK ANIMATION SPEEDS ===== */
+  --anim-slow: 15s !important;             /* Faster slow animations */
+  --anim-medium: 10s !important;           /* Faster medium animations */
+  --anim-fast: 1.5s !important;            /* Faster pulse effects */
+}
+
+/*
+ * ADDITIONAL CYBERPUNK ENHANCEMENTS
+ * Extra visual effects only applied with external stylesheet
+ */
+
+/* Enhanced cosmic scene glow */
+.cosmic-scene {
+  box-shadow: 
+    0 0 50px #ff00ff,
+    0 0 100px #00ffff,
+    0 0 150px #ff0080,
+    inset 0 0 100px rgba(255, 0, 255, 0.2) !important;
+}
+
+/* Pulsing border effect */
+.cosmic-scene::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ff0080, #ff00ff);
+  border-radius: 50%;
+  z-index: -1;
+  animation: neonPulse 3s ease-in-out infinite alternate;
+}
+
+/* Enhanced starfield with electric colors */
+.starfield {
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+    radial-gradient(2px 2px at 40px 70px, #00ffff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #ff00ff, transparent),
+    radial-gradient(1px 1px at 130px 80px, #00ffff, transparent),
+    radial-gradient(2px 2px at 160px 30px, #ffffff, transparent),
+    radial-gradient(1px 1px at 200px 90px, #ff00ff, transparent),
+    radial-gradient(2px 2px at 240px 50px, #00ffff, transparent),
+    radial-gradient(1px 1px at 280px 10px, #ff00ff, transparent) !important;
+}
+
+/* Theme control styling for cyberpunk */
+.theme-controls .theme-btn {
+  background: rgba(255, 0, 255, 0.2) !important;
+  border-color: #00ffff !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px #00ffff !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
+}
+
+.theme-controls .theme-btn:hover {
+  background: rgba(0, 255, 255, 0.3) !important;
+  box-shadow: 0 0 25px #00ffff !important;
+  text-shadow: 0 0 15px #ffffff !important;
+}
+
+/* Cyberpunk keyframe animation */
+@keyframes neonPulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
